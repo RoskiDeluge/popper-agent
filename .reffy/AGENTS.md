@@ -5,7 +5,7 @@ These instructions are for AI assistants working in this project.
 ## TL;DR Checklist
 
 - Decide whether Reffy ideation is needed for this request.
-- If needed, read existing context in `.references/artifacts/`.
+- If needed, read existing context in `.reffy/artifacts/`.
 - Add/update exploratory artifacts and keep them concise.
 - Run `reffy reindex` and `reffy validate` after artifact changes.
 - After ideation approval, run `reffy summarize --output json` and pick only directly relevant artifacts for proposal citations.
@@ -26,9 +26,9 @@ You can skip Reffy when the request is:
 
 ## Reffy Workflow
 
-1. Read existing artifacts in `.references/artifacts/`.
+1. Read existing artifacts in `.reffy/artifacts/`.
 2. Add or update artifacts to capture exploratory context.
-3. Run `reffy reindex` to index newly added files into `.references/manifest.json`.
+3. Run `reffy reindex` to index newly added files into `.reffy/manifest.json`.
 4. Run `reffy validate` to verify manifest contract compliance.
 
 ## Relationship To OpenSpec
@@ -68,7 +68,7 @@ No Reffy references used.
 
 ## Artifact Conventions
 
-- Treat `.references/` as a repository-local guidance and ideation context layer.
+- Treat `.reffy/` as a repository-local guidance and ideation context layer.
 - Keep artifact names clear and stable.
 - Prefer markdown notes for exploratory content.
 - Keep manifests machine-readable and schema-compliant (version 1).
