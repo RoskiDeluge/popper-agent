@@ -1,16 +1,10 @@
 #!/usr/bin/env node
-/**
- * CLI entry point for the refactored coding agent.
- * Uses main.ts with AgentSession and new mode modules.
- *
- * Test with: npx tsx src/cli-new.ts [args...]
- */
-process.title = "pi";
+process.title = "pppr";
 
 import { setBedrockProviderModule } from "@mariozechner/pi-ai";
 import * as bedrockProviderModule from "@mariozechner/pi-ai/bedrock-provider";
 import { EnvHttpProxyAgent, setGlobalDispatcher } from "undici";
-import { main } from "./main.js";
+import { main } from "./pppr/main.js";
 
 const resolvedBedrockProviderModule = bedrockProviderModule as unknown as {
 	bedrockProviderModule: Parameters<typeof setBedrockProviderModule>[0];
@@ -19,4 +13,8 @@ const resolvedBedrockProviderModule = bedrockProviderModule as unknown as {
 setGlobalDispatcher(new EnvHttpProxyAgent());
 setBedrockProviderModule(resolvedBedrockProviderModule.bedrockProviderModule);
 
-main(process.argv.slice(2));
+main(process.argv.slice(2)).catch((error: unknown) => {
+	const message = error instanceof Error ? error.message : String(error);
+	process.stderr.write(`${message}\n`);
+	process.exit(1);
+});
